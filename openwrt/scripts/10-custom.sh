@@ -31,6 +31,9 @@ git clone --depth=1 https://github.com/ilxp/luci-app-ikoolproxy package/new/luci
 # AdguardGome
 git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
 
+# 一键配置拨号
+git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/new/luci-app-netwizard
+
 # 加入自定义插件
 echo "
 # luci-app-mihomo
@@ -59,4 +62,10 @@ CONFIG_PACKAGE_luci-app-partexp=y
 
 # Lucky
 CONFIG_PACKAGE_luci-app-lucky=y
+
+# Lucky核心
+CONFIG_PACKAGE_lucky=y
+
+# 一键配置拨号
+CONFIG_PACKAGE_luci-app-netwizard=y
 " >> .config
