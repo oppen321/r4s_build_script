@@ -4,7 +4,7 @@
 
 # 个性化修改
 sed -i "s/hostname='.*'/hostname='ZeroWrt'/g" package/base-files/files/bin/config_generate
-curl -s https://raw.githubusercontent.com/oppen321/Diy/refs/heads/main/bg.webp -o package/new/luci-theme-argon/luci-theme-argon/htdocsluci-static/argon/img/bg.webp
+curl -s https://raw.githubusercontent.com/oppen321/Diy/refs/heads/main/bg.webp -o package/new/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp
 curl -s https://raw.githubusercontent.com/oppen321/Diy/refs/heads/main/banner -o package/base-files/files/etc/banner
 
 echo "
