@@ -69,3 +69,6 @@ CONFIG_PACKAGE_lucky=y
 # 一键配置拨号
 CONFIG_PACKAGE_luci-app-netwizard=y
 " >> .config
+
+# 位置修改
+sed -i 's/\("admin"\), *\("netwizard"\)/\1, "system", \2/g' package/new/luci-app-netwizard/luasrc/controller/*.lua
