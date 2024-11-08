@@ -22,9 +22,6 @@ git clone --depth=1 https://github.com/sirpdboy/luci-app-lucky package/new/luci-
 # luci-app-partexp
 git clone --depth=1 https://github.com/sirpdboy/luci-app-partexp package/new/luci-app-partexp
 
-# ChatGpt Web
-git clone --depth=1 https://github.com/sirpdboy/chatgpt-web.git package/new/luci-app-chatgpt
-
 # ikoolproxy
 git clone --depth=1 https://github.com/ilxp/luci-app-ikoolproxy package/new/luci-app-ikoolproxy
 
@@ -66,9 +63,6 @@ CONFIG_PACKAGE_adguardhome=y
 
 # ikoolproxy
 CONFIG_PACKAGE_luci-app-ikoolproxy=y
-
-# chatgpt
-CONFIG_PACKAGE_luci-app-chatgpt=y
 
 # 自动挂载
 CONFIG_PACKAGE_luci-app-partexp=y
