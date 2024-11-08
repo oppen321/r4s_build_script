@@ -89,5 +89,32 @@ EOF
   echo "自定义配置已成功追加到 .config 文件中"
 ) &
 
+# 加载clash核心
+#!/bin/bash
+
+# 从 build-release.yml 文件中提取所选设备
+DEVICE=$(grep -A 4 'workflow_dispatch:' build-release.yml | grep 'default:' | awk -F "'" '{print $2}')
+
+echo "Selected device from build-release.yml: $DEVICE"
+
+# 创建所需的目录
+mkdir -p files/etc/openclash/core
+
+# 根据设备类型选择对应的架构并设置下载链接
+if [[ "$DEVICE" == "armv8" || "$DEVICE" == "nanopi-r4s" || "$DEVICE" == "nanopi-r5s" ]]; then
+    ARCH="arm64"
+elif [[ "$DEVICE" == "x86_64" ]]; then
+    ARCH="amd64"
+else
+    echo "Unknown device type: $DEVICE"
+    exit 1
+fi
+
+# 下载并解压文件，直接重命名为 clash_meta
+CLASH_META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-${ARCH}.tar.gz"
+wget -qO- "$CLASH_META_URL" | tar xOz > files/etc/openclash/core/clash_meta
+
+echo "Clash core downloaded and saved as clash_meta in files/etc/openclash/core/"
+
 # 位置修改
 sed -i 's/\("admin"\), *\("netwizard"\)/\1, "system", \2/g' package/new/luci-app-netwizard/luasrc/controller/*.lua
