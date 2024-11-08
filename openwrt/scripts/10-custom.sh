@@ -35,20 +35,18 @@ git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome 
 git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/new/luci-app-netwizard
 
 # 加入自定义插件
-# 获取 .config 文件的初始修改时间
 (
-  # 先创建一个空的 .config 文件
-  touch .config
-
-  # 获取 .config 文件的初始修改时间
-  initial_mod_time=$(stat -c %Y .config)
-
-  # 循环等待，直到 .config 文件被编译脚本覆盖
-  while [ "$(stat -c %Y .config)" -eq "$initial_mod_time" ]; do
+  # 等待 .config 文件被创建
+  while [ ! -f .config ]; do
       sleep 1  # 每秒检查一次
   done
 
-  # 编译脚本已覆盖 .config，现在追加自定义配置
+  # 等待 .config 文件有内容（curl 命令完成下载）
+  while [ ! -s .config ]; do
+      sleep 1
+  done
+
+  # 追加自定义配置
   echo "
   # luci-app-mihomo
   CONFIG_PACKAGE_luci-app-mihomo=y
@@ -86,7 +84,6 @@ git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/new/l
 
   echo "自定义配置已成功追加到 .config 文件中。"
 ) &
-
 
 # 位置修改
 sed -i 's/\("admin"\), *\("netwizard"\)/\1, "system", \2/g' package/new/luci-app-netwizard/luasrc/controller/*.lua
