@@ -29,10 +29,13 @@ git clone --depth=1 https://github.com/sirpdboy/chatgpt-web.git package/new/luci
 git clone --depth=1 https://github.com/ilxp/luci-app-ikoolproxy package/new/luci-app-ikoolproxy
 
 # AdguardGome
-git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
+git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome luci-app-store
 
 # 一键配置拨号
 git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/new/luci-app-netwizard
+
+# iStore商店
+
 
 # 加入自定义插件
 (
@@ -71,6 +74,9 @@ CONFIG_PACKAGE_luci-app-chatgpt=y
 
 # 自动挂载
 CONFIG_PACKAGE_luci-app-partexp=y
+
+# iStore商店
+CONFIG_PACKAGE_luci-app-store=y
 
 # Lucky
 CONFIG_PACKAGE_luci-app-lucky=y
