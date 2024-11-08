@@ -47,42 +47,42 @@ git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/new/l
   done
 
   # 追加自定义配置
-  echo "
-  # luci-app-mihomo
-  CONFIG_PACKAGE_luci-app-mihomo=y
+  cat << EOF >> .config
+# luci-app-mihomo
+CONFIG_PACKAGE_luci-app-mihomo=y
 
-  # mihomo
-  CONFIG_PACKAGE_mihomo=y
+# mihomo
+CONFIG_PACKAGE_mihomo=y
 
-  # Openclash
-  CONFIG_PACKAGE_luci-app-openclash=y
+# Openclash
+CONFIG_PACKAGE_luci-app-openclash=y
 
-  # AdguardHome
-  CONFIG_PACKAGE_luci-app-adguardhome=y
+# AdguardHome
+CONFIG_PACKAGE_luci-app-adguardhome=y
 
-  # AdguardHome核心
-  CONFIG_PACKAGE_adguardhome=y
+# AdguardHome核心
+CONFIG_PACKAGE_adguardhome=y
 
-  # ikoolproxy
-  CONFIG_PACKAGE_luci-app-ikoolproxy=y
+# ikoolproxy
+CONFIG_PACKAGE_luci-app-ikoolproxy=y
 
-  # chatgpt
-  CONFIG_PACKAGE_luci-app-chatgpt=y
+# chatgpt
+CONFIG_PACKAGE_luci-app-chatgpt=y
 
-  # 自动挂载
-  CONFIG_PACKAGE_luci-app-partexp=y
+# 自动挂载
+CONFIG_PACKAGE_luci-app-partexp=y
 
-  # Lucky
-  CONFIG_PACKAGE_luci-app-lucky=y
+# Lucky
+CONFIG_PACKAGE_luci-app-lucky=y
 
-  # Lucky核心
-  CONFIG_PACKAGE_lucky=y
+# Lucky核心
+CONFIG_PACKAGE_lucky=y
 
-  # 一键配置拨号
-  CONFIG_PACKAGE_luci-app-netwizard=y
-  " >> .config
+# 一键配置拨号
+CONFIG_PACKAGE_luci-app-netwizard=y
+EOF
 
-  echo "自定义配置已成功追加到 .config 文件中。"
+  echo "自定义配置已成功追加到 .config 文件中"
 ) &
 
 # 位置修改
