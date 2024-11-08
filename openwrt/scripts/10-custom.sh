@@ -34,8 +34,8 @@ git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome 
 # 一键配置拨号
 git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/new/luci-app-netwizard
 
-# iStore商店
-
+# 替换插件包
+rm -rf feeds/packages/net/adguardhome
 
 # 加入自定义插件
 (
