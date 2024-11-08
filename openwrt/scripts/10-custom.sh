@@ -90,9 +90,6 @@ EOF
 ) &
 
 # 加载clash核心
-#!/bin/bash
-
-# 从 build-release.yml 文件中提取所选设备
 DEVICE=$(grep -A 4 'workflow_dispatch:' build-release.yml | grep 'default:' | awk -F "'" '{print $2}')
 
 echo "Selected device from build-release.yml: $DEVICE"
@@ -101,7 +98,7 @@ echo "Selected device from build-release.yml: $DEVICE"
 mkdir -p files/etc/openclash/core
 
 # 根据设备类型选择对应的架构并设置下载链接
-if [[ "$DEVICE" == "armv8" || "$DEVICE" == "nanopi-r4s" || "$DEVICE" == "nanopi-r5s" ]]; then
+if [[ "$DEVICE" == "armv8" || "$DEVICE" == "nanopi-r4s" || "$DEVICE" == "nanopi-r5s" || "$DEVICE" == "netgear_r8500" ]]; then
     ARCH="arm64"
 elif [[ "$DEVICE" == "x86_64" ]]; then
     ARCH="amd64"
