@@ -36,50 +36,56 @@ git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/new/l
 
 # 加入自定义插件
 # 获取 .config 文件的初始修改时间
-initial_mod_time=$(stat -c %Y .config)
+(
+  # 先创建一个空的 .config 文件
+  touch .config
 
-# 循环等待，直到 .config 文件被编译脚本覆盖
-while [ "$(stat -c %Y .config)" -eq "$initial_mod_time" ]; do
-    sleep 1  # 每秒检查一次
-done
+  # 获取 .config 文件的初始修改时间
+  initial_mod_time=$(stat -c %Y .config)
 
-# 编译脚本已覆盖 .config，现在追加自定义配置
-echo "
-# luci-app-mihomo
-CONFIG_PACKAGE_luci-app-mihomo=y
+  # 循环等待，直到 .config 文件被编译脚本覆盖
+  while [ "$(stat -c %Y .config)" -eq "$initial_mod_time" ]; do
+      sleep 1  # 每秒检查一次
+  done
 
-# mihomo
-CONFIG_PACKAGE_mihomo=y
+  # 编译脚本已覆盖 .config，现在追加自定义配置
+  echo "
+  # luci-app-mihomo
+  CONFIG_PACKAGE_luci-app-mihomo=y
 
-# Openclash
-CONFIG_PACKAGE_luci-app-openclash=y
+  # mihomo
+  CONFIG_PACKAGE_mihomo=y
 
-# AdguardHome
-CONFIG_PACKAGE_luci-app-adguardhome=y
+  # Openclash
+  CONFIG_PACKAGE_luci-app-openclash=y
 
-# AdguardHome核心
-CONFIG_PACKAGE_adguardhome=y
+  # AdguardHome
+  CONFIG_PACKAGE_luci-app-adguardhome=y
 
-# ikoolproxy
-CONFIG_PACKAGE_luci-app-ikoolproxy=y
+  # AdguardHome核心
+  CONFIG_PACKAGE_adguardhome=y
 
-# chatgpt
-CONFIG_PACKAGE_luci-app-chatgpt=y
+  # ikoolproxy
+  CONFIG_PACKAGE_luci-app-ikoolproxy=y
 
-# 自动挂载
-CONFIG_PACKAGE_luci-app-partexp=y
+  # chatgpt
+  CONFIG_PACKAGE_luci-app-chatgpt=y
 
-# Lucky
-CONFIG_PACKAGE_luci-app-lucky=y
+  # 自动挂载
+  CONFIG_PACKAGE_luci-app-partexp=y
 
-# Lucky核心
-CONFIG_PACKAGE_lucky=y
+  # Lucky
+  CONFIG_PACKAGE_luci-app-lucky=y
 
-# 一键配置拨号
-CONFIG_PACKAGE_luci-app-netwizard=y
-" >> .config
+  # Lucky核心
+  CONFIG_PACKAGE_lucky=y
 
-echo "自定义配置已成功追加到 .config 文件中。"
+  # 一键配置拨号
+  CONFIG_PACKAGE_luci-app-netwizard=y
+  " >> .config
+
+  echo "自定义配置已成功追加到 .config 文件中。"
+) &
 
 
 # 位置修改
