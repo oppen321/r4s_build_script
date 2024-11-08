@@ -29,13 +29,11 @@ git clone --depth=1 https://github.com/sirpdboy/chatgpt-web.git package/new/luci
 git clone --depth=1 https://github.com/ilxp/luci-app-ikoolproxy package/new/luci-app-ikoolproxy
 
 # AdguardGome
+rm -rf feeds/packages/net/adguardhome
 git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome luci-app-store
 
 # 一键配置拨号
 git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/new/luci-app-netwizard
-
-# 替换插件包
-rm -rf feeds/packages/net/adguardhome
 
 # 加入自定义插件
 (
