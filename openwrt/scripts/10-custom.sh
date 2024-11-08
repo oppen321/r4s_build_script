@@ -113,7 +113,9 @@ fi
 # 下载并解压文件，直接重命名为 clash_meta
 CLASH_META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/meta/clash-linux-${ARCH}.tar.gz"
 wget -qO- "$CLASH_META_URL" | tar xOz > files/etc/openclash/core/clash_meta
-
+wget -qO- $GEOIP_URL > files/etc/openclash/GeoIP.dat
+wget -qO- $GEOSITE_URL > files/etc/openclash/GeoSite.dat
+chmod +x files/etc/openclash/core/clash*
 echo "Clash core downloaded and saved as clash_meta in files/etc/openclash/core/"
 
 # 位置修改
