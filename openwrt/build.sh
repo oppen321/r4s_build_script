@@ -176,7 +176,7 @@ git clone https://$github/immortalwrt/packages master/immortalwrt_packages --dep
 
 if [ -d openwrt ]; then
     cd openwrt
-    [ "$1" = "rc2" ] && echo "$CURRENT_DATE" > version.date
+    echo "1730409337" > version.date # OpenWrt v24.10: set branch defaults
     curl -Os https://$mirror/openwrt/patch/key.tar.gz && tar zxf key.tar.gz && rm -f key.tar.gz
 else
     echo -e "${RED_COLOR}Failed to download source code${RES}"
@@ -311,7 +311,11 @@ export ENABLE_LTO=$ENABLE_LTO
 # kernel - CLANG + LTO; Allow CONFIG_KERNEL_CC=clang / clang-18 / clang-xx
 if [ "$KERNEL_CLANG_LTO" = "y" ]; then
     echo '# Kernel - CLANG LTO' >> .config
-    echo 'CONFIG_KERNEL_CC="clang"' >> .config
+    if [ "$USE_GCC15" = "y" ] && [ "$ENABLE_CCACHE" = "y" ]; then
+        echo 'CONFIG_KERNEL_CC="ccache clang"' >> .config
+    else
+        echo 'CONFIG_KERNEL_CC="clang"' >> .config
+    fi
     echo 'CONFIG_EXTRA_OPTIMIZATION=""' >> .config
     echo '# CONFIG_PACKAGE_kselftests-bpf is not set' >> .config
 fi
@@ -386,18 +390,12 @@ fi
 if [ "$BUILD_TOOLCHAIN" = "y" ]; then
     echo -e "\r\n${GREEN_COLOR}Building Toolchain ...${RES}\r\n"
     make -j$cores toolchain/compile || make -j$cores toolchain/compile V=s || exit 1
-    make tools/clang/clean
-    rm -f dl/clang-*
     mkdir -p toolchain-cache
     [ "$ENABLE_GLIBC" = "y" ] && LIBC=glibc || LIBC=musl
     tar -I "zstd -19 -T$(nproc --all)" -cf toolchain-cache/toolchain_${LIBC}_${toolchain_arch}_gcc-${gcc_version}${tools_suffix}.tar.zst ./{build_dir,dl,staging_dir,tmp}
     echo -e "\n${GREEN_COLOR} Build success! ${RES}"
     exit 0
 else
-    if [ "$BUILD_FAST" = "y" ]; then
-        echo -e "\r\n${GREEN_COLOR}Building tools/clang ...${RES}\r\n"
-        make tools/clang/compile -j$cores
-    fi
     echo -e "\r\n${GREEN_COLOR}Building OpenWrt ...${RES}\r\n"
     sed -i "/BUILD_DATE/d" package/base-files/files/usr/lib/os-release
     sed -i "/BUILD_ID/aBUILD_DATE=\"$CURRENT_DATE\"" package/base-files/files/usr/lib/os-release
