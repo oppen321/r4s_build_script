@@ -27,7 +27,7 @@ git clone --depth=1 https://github.com/ilxp/luci-app-ikoolproxy package/new/luci
 
 # AdguardGome
 rm -rf feeds/packages/net/adguardhome
-git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome luci-app-store luci-lib-taskd taskd luci-lib-xterm luci-app-quickstart quickstart
+git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome luci-app-store luci-lib-taskd taskd luci-lib-xterm
 
 # 一键配置拨号
 git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/new/luci-app-netwizard
@@ -78,12 +78,6 @@ CONFIG_PACKAGE_lucky=y
 
 # 一键配置拨号
 CONFIG_PACKAGE_luci-app-netwizard=y
-
-# 设置向导
-CONFIG_PACKAGE_luci-app-quickstart=y
-
-# quickstart核心
-CONFIG_PACKAGE_quickstart=y
 EOF
 
   echo "自定义配置已成功追加到 .config 文件中"
