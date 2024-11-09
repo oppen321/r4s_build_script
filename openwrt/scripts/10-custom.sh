@@ -78,6 +78,12 @@ CONFIG_PACKAGE_lucky=y
 
 # 一键配置拨号
 CONFIG_PACKAGE_luci-app-netwizard=y
+
+# 设置向导
+CONFIG_PACKAGE_luci-app-quickstart=y
+
+# quickstart核心
+CONFIG_PACKAGE_quickstart=y
 EOF
 
   echo "自定义配置已成功追加到 .config 文件中"
