@@ -104,6 +104,8 @@ CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Tuic_Client=y
 # Dae
 CONFIG_PACKAGE_luci-app-daed=y
 
+# passwall2
+luci-app-passwall2
 EOF
 
   echo "自定义配置已成功追加到 .config 文件中"
