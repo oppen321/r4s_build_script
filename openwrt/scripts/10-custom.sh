@@ -32,6 +32,12 @@ git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome 
 # 一键配置拨号
 git clone --depth=1 https://github.com/sirpdboy/luci-app-netwizard package/new/luci-app-netwizard
 
+# SmaerDns
+rm -rf feeds/packages/net/smartdns
+rm -rf feeds/luci/applications/luci-app-smartdns
+git clone --depth=1 https://github.com/pymumu/luci-app-smartdns package/new/luci-app-smartdns
+git clone --depth=1 https://github.com/pymumu/openwrt-smartdns package/new/smartdns
+
 # 加入自定义插件
 (
   # 等待 .config 文件被创建
@@ -78,6 +84,26 @@ CONFIG_PACKAGE_lucky=y
 
 # 一键配置拨号
 CONFIG_PACKAGE_luci-app-netwizard=y
+
+# SmaerDns
+CONFIG_PACKAGE_luci-app-smartdns=y
+
+# SSR-PLUS
+CONFIG_PACKAGE_luci-app-ssr-plus=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Hysteria=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_IPT2Socks=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NaiveProxy=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Redsocks2=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadow_TLS=y
+# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Server is not set
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Server=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Tuic_Client=y
+
+# Dae
+CONFIG_PACKAGE_luci-app-daed=y
+
 EOF
 
   echo "自定义配置已成功追加到 .config 文件中"
