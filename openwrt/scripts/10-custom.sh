@@ -38,7 +38,6 @@ rm -rf feeds/luci/applications/luci-app-smartdns
 git clone --depth=1 https://github.com/pymumu/luci-app-smartdns package/new/luci-app-smartdns
 git clone --depth=1 https://github.com/pymumu/openwrt-smartdns package/new/smartdns
 
-# 加入自定义插件
 (
   # 等待 .config 文件被创建
   while [ ! -f .config ]; do
@@ -50,20 +49,9 @@ git clone --depth=1 https://github.com/pymumu/openwrt-smartdns package/new/smart
       sleep 1
   done
 
-  # 追加自定义配置
-# 等待 .config 文件被创建
-while [ ! -f .config ]; do
-    sleep 1  # 每秒检查一次
-done
-
-# 等待 .config 文件有内容（curl 命令完成下载）
-while [ ! -s .config ]; do
-    sleep 1
-done
-
-# 追加自定义配置，注释掉原来的 `CONFIG_TARGET_ROOTFS_PARTSIZE` 配置，使用新的值
-sed -i '/^CONFIG_TARGET_ROOTFS_PARTSIZE/d' .config
-cat << EOF >> .config
+  # 追加自定义配置，注释掉原来的 `CONFIG_TARGET_ROOTFS_PARTSIZE` 配置，使用新的值
+  sed -i '/^CONFIG_TARGET_ROOTFS_PARTSIZE/d' .config
+  cat << EOF >> .config
 # 配置根文件系统大小
 CONFIG_TARGET_ROOTFS_PARTSIZE=1024
 
@@ -122,7 +110,6 @@ CONFIG_PACKAGE_luci-app-daed=y
 # passwall2
 CONFIG_PACKAGE_luci-app-passwall2=y
 EOF
-
 
   echo "自定义配置已成功追加到 .config 文件中"
 ) &
