@@ -49,11 +49,7 @@ git clone --depth=1 https://github.com/pymumu/openwrt-smartdns package/new/smart
       sleep 1
   done
 
-  # 追加自定义配置，注释掉原来的 `CONFIG_TARGET_ROOTFS_PARTSIZE` 配置，使用新的值
-  sed -i '/^CONFIG_TARGET_ROOTFS_PARTSIZE/d' .config
   cat << EOF >> .config
-# 配置根文件系统大小
-CONFIG_TARGET_ROOTFS_PARTSIZE=1024
 
 # luci-app-mihomo
 CONFIG_PACKAGE_luci-app-mihomo=y
@@ -90,19 +86,6 @@ CONFIG_PACKAGE_luci-app-netwizard=y
 
 # SmaerDns
 CONFIG_PACKAGE_luci-app-smartdns=y
-
-# SSR-PLUS
-CONFIG_PACKAGE_luci-app-ssr-plus=y
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Hysteria=y
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_IPT2Socks=y
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Kcptun=y
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_NaiveProxy=y
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Redsocks2=y
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadow_TLS=y
-# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Server is not set
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Server=y
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Tuic_Client=y
 
 # Dae
 CONFIG_PACKAGE_luci-app-daed=y
