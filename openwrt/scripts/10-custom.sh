@@ -89,6 +89,9 @@ CONFIG_PACKAGE_luci-app-smartdns=y
 
 # passwall2
 CONFIG_PACKAGE_luci-app-passwall2=y
+
+# docker-compose
+CONFIG_PACKAGE_docker-compose=y
 EOF
 
   echo "自定义配置已成功追加到 .config 文件中"
