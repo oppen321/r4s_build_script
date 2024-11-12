@@ -87,9 +87,6 @@ CONFIG_PACKAGE_luci-app-netwizard=y
 # SmaerDns
 CONFIG_PACKAGE_luci-app-smartdns=y
 
-# Dae
-CONFIG_PACKAGE_luci-app-daed=y
-
 # passwall2
 CONFIG_PACKAGE_luci-app-passwall2=y
 EOF
