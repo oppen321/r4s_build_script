@@ -120,17 +120,14 @@ if [ "$version" = "dev" ] || [ "$version" = "rc2" ]; then
     # add custom nft command support
     curl -s https://$mirror/openwrt/patch/firewall4/100-openwrt-firewall4-add-custom-nft-command-support.patch | patch -p1
     # libnftnl
-    rm -rf package/libs/libnftnl
     mkdir -p package/libs/libnftnl/patches
-    curl -s https://$mirror/openwrt/patch/firewall4/libnftnl/Makefile > package/libs/libnftnl/Makefile
     curl -s https://$mirror/openwrt/patch/firewall4/libnftnl/0001-libnftnl-add-fullcone-expression-support.patch > package/libs/libnftnl/patches/0001-libnftnl-add-fullcone-expression-support.patch
     curl -s https://$mirror/openwrt/patch/firewall4/libnftnl/0002-libnftnl-add-brcm-fullcone-support.patch > package/libs/libnftnl/patches/0002-libnftnl-add-brcm-fullcone-support.patch
     # nftables
-    rm -rf package/network/utils/nftables
     mkdir -p package/network/utils/nftables/patches
-    curl -s https://$mirror/openwrt/patch/firewall4/nftables/Makefile > package/network/utils/nftables/Makefile
     curl -s https://$mirror/openwrt/patch/firewall4/nftables/0001-nftables-add-fullcone-expression-support.patch > package/network/utils/nftables/patches/0001-nftables-add-fullcone-expression-support.patch
     curl -s https://$mirror/openwrt/patch/firewall4/nftables/0002-nftables-add-brcm-fullconenat-support.patch > package/network/utils/nftables/patches/0002-nftables-add-brcm-fullconenat-support.patch
+    curl -s https://$mirror/openwrt/patch/firewall4/nftables/0003-drop-rej-file.patch > package/network/utils/nftables/patches/0003-drop-rej-file.patch
 fi
 
 # FullCone module
